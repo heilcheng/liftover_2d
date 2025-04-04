@@ -70,60 +70,60 @@ class ChainMapper:
         
         return chain_trees
     
-def _parse_chain_file(self):
-    """Parse a real chain file and build interval trees.
-    
-    Chain file format is described at:
-    https://genome.ucsc.edu/goldenPath/help/chain.html
-    
-    Returns:
-        Dictionary of chromosome -> interval tree mappings
-    """
-    if not os.path.exists(self.chain_file):
-        raise FileNotFoundError(f"Chain file not found: {self.chain_file}")
+    def _parse_chain_file(self):
+        """Parse a real chain file and build interval trees.
         
-    # Initialize empty interval trees for each chromosome
-    chain_trees = {}
-    
-    # Open the file (handling both gzipped and plain text)
-    opener = gzip.open if self.chain_file.endswith('.gz') else open
-    
-    with opener(self.chain_file, 'rt') as f:
-        for line in f:
-            if line.startswith('chain'):
-                # Parse chain header
-                parts = line.strip().split()
-                score = int(parts[1])
-                source_chrom = parts[2]
-                source_size = int(parts[3])
-                source_strand = parts[4]
-                source_start = int(parts[5])
-                source_end = int(parts[6])
-                target_chrom = parts[7]
-                target_size = int(parts[8])
-                target_strand = parts[9]
-                target_start = int(parts[10])
-                target_end = int(parts[11])
-                chain_id = parts[12] if len(parts) > 12 else None
-                
-                # Initialize source chromosome interval tree if needed
-                if source_chrom not in chain_trees:
-                    chain_trees[source_chrom] = IntervalTree()
-                
-                # Store this chain interval
-                chain_trees[source_chrom].addi(
-                    source_start, 
-                    source_end, 
-                    {
-                        'target_chrom': target_chrom,
-                        'target_start': target_start,
-                        'target_end': target_end,
-                        'score': score,
-                        'id': chain_id
-                    }
-                )
-    
-    return chain_trees
+        Chain file format is described at:
+        https://genome.ucsc.edu/goldenPath/help/chain.html
+        
+        Returns:
+            Dictionary of chromosome -> interval tree mappings
+        """
+        if not os.path.exists(self.chain_file):
+            raise FileNotFoundError(f"Chain file not found: {self.chain_file}")
+            
+        # Initialize empty interval trees for each chromosome
+        chain_trees = {}
+        
+        # Open the file (handling both gzipped and plain text)
+        opener = gzip.open if self.chain_file.endswith('.gz') else open
+        
+        with opener(self.chain_file, 'rt') as f:
+            for line in f:
+                if line.startswith('chain'):
+                    # Parse chain header
+                    parts = line.strip().split()
+                    score = int(parts[1])
+                    source_chrom = parts[2]
+                    source_size = int(parts[3])
+                    source_strand = parts[4]
+                    source_start = int(parts[5])
+                    source_end = int(parts[6])
+                    target_chrom = parts[7]
+                    target_size = int(parts[8])
+                    target_strand = parts[9]
+                    target_start = int(parts[10])
+                    target_end = int(parts[11])
+                    chain_id = parts[12] if len(parts) > 12 else None
+                    
+                    # Initialize source chromosome interval tree if needed
+                    if source_chrom not in chain_trees:
+                        chain_trees[source_chrom] = IntervalTree()
+                    
+                    # Store this chain interval
+                    chain_trees[source_chrom].addi(
+                        source_start, 
+                        source_end, 
+                        {
+                            'target_chrom': target_chrom,
+                            'target_start': target_start,
+                            'target_end': target_end,
+                            'score': score,
+                            'id': chain_id
+                        }
+                    )
+        
+        return chain_trees
     
     def lift_coordinate(self, chrom, position):
         """Map a single coordinate from source to target assembly.

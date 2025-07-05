@@ -1,73 +1,167 @@
-# Liftover_2D: Fast 2D Genomic Coordinate Conversion
+# HabitTracker: Build Better Habits with Visual Motivation
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Overview
+## 🌟 Overview
 
-Liftover_2D addresses a critical need in genomic analysis: converting chromatin interaction data (Hi-C, ChIA-PET, etc.) between different genome assemblies. Unlike traditional tools that handle 1D genomic features, Liftover_2D is specialized for the pairwise nature of 3C+ interactions.
+HabitTracker is a beautiful, motivating habit tracking app inspired by GitHub's contribution graph and Duolingo's streak system. Track your daily habits with a visually satisfying interface that encourages consistency and celebrates your progress.
 
-### The Problem
+### ✨ Key Features
 
-When a new genome assembly is released (e.g., moving from hg19 to hg38), researchers face a challenge:
+- **📊 GitHub-style Contribution Graph**: Visualize your habit completion with colored squares
+- **🔥 Duolingo-inspired Streak System**: Track current and longest streaks with motivating fire icons
+- **🎯 Habit Management**: Create, edit, and organize your personal habits
+- **📱 Beautiful UI/UX**: Clean, modern interface with Duolingo's signature light green theme
+- **📈 Progress Tracking**: See your improvement over time with detailed statistics
+- **🔔 Daily Reminders**: Never miss a habit with customizable notifications
 
-1. ❌ **Re-map raw reads:** Computationally expensive, requires original FASTQ files
-2. ❌ **Convert 1D coordinates independently:** Loses the crucial pairwise context
+## 🚀 Getting Started
 
-### Our Solution
+### Prerequisites
 
-Liftover_2D provides a specialized tool that:
+- Node.js (v16 or higher)
+- npm or yarn
+- Expo CLI
+- iOS Simulator or Android Emulator (optional)
 
-1. ✅ Uses standard chain files for coordinate translation
-2. ✅ Preserves the pairwise nature of interactions
-3. ✅ Works with both .pairs and .cool file formats
-4. ✅ Achieves high performance through vectorization and parallelization
-
-## Installation
-
-```bash
-# From PyPI
-pip install liftover_2d
-
-# From source
-git clone https://github.com/YOUR-USERNAME/liftover_2d.git
-cd liftover_2d
-pip install -e .
-```
-
-## Quick Start
+### Installation
 
 ```bash
-# Basic usage for .pairs files
-liftover_2d pairs input.pairs output.hg38.pairs hg19ToHg38.chain.gz
+# Clone the repository
+git clone https://github.com/YOUR-USERNAME/habit-tracker.git
+cd habit-tracker
 
-# For .cool files
-liftover_2d cool input.cool output.hg38.cool hg19ToHg38.chain.gz --resolution 10000
+# Install dependencies
+npm install
+
+# Start the development server
+npm start
 ```
 
-## Documentation
+### Running the App
 
-For detailed usage instructions, see the [documentation](docs/usage.md).
+```bash
+# For iOS
+npm run ios
 
-## Integration with Open2C Ecosystem
+# For Android
+npm run android
 
-Liftover_2D fits seamlessly into the existing Open2C toolchain:
+# For web
+npm run web
+```
 
-1. Process raw sequencing data with `pairtools`
-2. Convert between assemblies with `liftover_2d`
-3. Create and analyze contact matrices with `cooler`
-4. Visualize data with `cooltools` and other visualization tools
+## 🎨 Design Philosophy
 
-## Performance
+### Duolingo-Inspired Theme
+- **Primary Color**: Light green (#58CC02) - Duolingo's signature color
+- **Background**: Clean white (#FFFFFF)
+- **Accent Colors**: Warm oranges and yellows for streaks
+- **Typography**: Clear, readable fonts with proper hierarchy
 
-Compared to traditional re-mapping approaches, Liftover_2D is:
-- **50× faster** for typical datasets
-- **Memory efficient** even for billion-pair datasets
-- **Preserves all metadata** from the original files
+### Visual Elements
+- **Contribution Grid**: GitHub-style squares showing daily completion
+- **Streak Fire**: Animated fire icons for active streaks
+- **Progress Bars**: Visual representation of habit completion
+- **Celebration Animations**: Rewards for maintaining streaks
 
-## License
+## 📱 App Structure
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+```
+src/
+├── components/          # Reusable UI components
+│   ├── ContributionGrid.tsx
+│   ├── StreakCounter.tsx
+│   ├── HabitCard.tsx
+│   └── ProgressBar.tsx
+├── screens/            # Main app screens
+│   ├── HomeScreen.tsx
+│   ├── HabitDetailScreen.tsx
+│   ├── AddHabitScreen.tsx
+│   └── StatsScreen.tsx
+├── navigation/         # Navigation configuration
+├── services/          # Data management and storage
+├── types/             # TypeScript type definitions
+└── utils/             # Helper functions
+```
 
-## Contributing
+## 🔧 Technical Stack
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+- **Framework**: React Native with Expo
+- **Language**: TypeScript
+- **Navigation**: React Navigation
+- **Storage**: AsyncStorage for local data persistence
+- **Icons**: Expo Vector Icons
+- **State Management**: React Context API
+
+## 🎯 Core Features
+
+### 1. Habit Management
+- Create custom habits with personalized names and descriptions
+- Set frequency (daily, weekly, custom)
+- Add categories and tags for organization
+- Edit and delete habits
+
+### 2. Contribution Graph
+- GitHub-style grid showing 365 days of activity
+- Color-coded squares based on completion status
+- Interactive tooltips showing detailed information
+- Smooth animations and transitions
+
+### 3. Streak System
+- Current streak counter with fire icon
+- Longest streak tracking
+- Streak milestones and achievements
+- Motivational messages and celebrations
+
+### 4. Statistics & Analytics
+- Weekly and monthly progress reports
+- Success rate calculations
+- Habit completion trends
+- Personal best records
+
+## 🚧 Development Roadmap
+
+### Phase 1: Core Features ✅
+- [x] Basic habit tracking
+- [x] Contribution graph visualization
+- [x] Streak system
+- [x] Local data storage
+
+### Phase 2: Enhanced Features 🚧
+- [ ] Push notifications
+- [ ] Cloud sync
+- [ ] Social features
+- [ ] Advanced analytics
+
+### Phase 3: Premium Features 📋
+- [ ] Custom themes
+- [ ] Export data
+- [ ] Habit templates
+- [ ] Integration with health apps
+
+## 🤝 Contributing
+
+We welcome contributions! Please feel free to submit issues and pull requests.
+
+### Development Setup
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Inspired by GitHub's contribution graph
+- UI/UX design inspired by Duolingo's engaging interface
+- Built with React Native and Expo
+
+---
+
+**Build better habits, one day at a time! 🔥**

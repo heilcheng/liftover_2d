@@ -1,63 +1,37 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
-# C extensions
-*.so
+# dependencies
+node_modules/
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
+# Expo
+.expo/
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+web-build/
+expo-env.d.ts
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
+# Native
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
 
-# Jupyter Notebook
-.ipynb_checkpoints
+# Metro
+.metro-health-check*
 
-# Environment directories
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
 
-# IDE specific files
-.idea/
-.vscode/
-*.swp
-*.swo
+# macOS
+.DS_Store
+*.pem
 
-# Project specific
-*.pairs
-*.cool
-*.mcool
-*.hic
-*.chain
-*.chain.gz
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
